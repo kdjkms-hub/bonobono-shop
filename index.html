@@ -2,75 +2,150 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>보노보노 영상 속 상품</title>
-<meta name="description" content="보노보노 쇼츠에 나온 상품을 모았습니다.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>보노보노 · 영상 속 상품</title>
+<meta name="description" content="보노보노 쇼츠에 나온 상품을 한곳에 모았어요.">
+<meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0c0d" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="보노보노 · 영상 속 상품">
+<meta property="og:description" content="쇼츠에 나온 상품을 한곳에 모았어요.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23ff4d2e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-:root { --bg:#f6f6f4; --card:#fff; --ink:#1b1b1b; --muted:#6b6b6b; --line:#e4e4e0; --accent:#e5322d; --accent-ink:#fff; }
-@media (prefers-color-scheme: dark) { :root { --bg:#141414; --card:#1f1f1f; --ink:#f1f1f1; --muted:#a3a3a3; --line:#2f2f2f; } }
-* { box-sizing:border-box; }
-body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.45 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif; }
-header { max-width:720px; margin:0 auto; padding:24px 16px 8px; }
-h1 { font-size:22px; margin:0 0 4px; }
-.sub { color:var(--muted); margin:0 0 14px; font-size:14px; }
-.notice { font-size:12px; color:var(--muted); background:var(--card); border:1px solid var(--line); border-radius:10px; padding:8px 10px; margin:0 0 12px; }
-input { width:100%; font:inherit; padding:11px 12px; border-radius:10px; border:1px solid var(--line); background:var(--card); color:var(--ink); }
-main { max-width:720px; margin:0 auto; padding:8px 16px 40px; display:grid; gap:10px; }
-.item { display:flex; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:10px; }
-.thumb { position:relative; flex:0 0 84px; aspect-ratio:9/16; border-radius:10px; overflow:hidden; background:var(--line); }
-.thumb img { width:100%; height:100%; object-fit:cover; display:block; }
-.new { position:absolute; top:6px; left:6px; background:var(--accent); color:var(--accent-ink); font-size:11px; font-weight:700; padding:2px 6px; border-radius:6px; }
-.body { flex:1; min-width:0; display:flex; flex-direction:column; }
-.date { margin:0; font-size:12px; color:var(--muted); }
-h2 { font-size:15px; margin:2px 0 10px; font-weight:600; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
-.actions { margin-top:auto; display:flex; gap:8px; }
-.actions a { text-decoration:none; font-weight:700; font-size:14px; border-radius:9px; padding:9px 12px; text-align:center; }
-.buy { flex:1; background:var(--accent); color:var(--accent-ink); }
-.watch { border:1px solid var(--line); color:var(--ink); }
-.empty { color:var(--muted); text-align:center; padding:40px 0; }
+:root {
+  --bg: #fafaf9; --surface: #ffffff; --ink: #18181b; --ink-2: #52525b; --ink-3: #a1a1aa;
+  --line: #ececec; --accent: #ff4d2e; --accent-ink: #ffffff; --chip: #f4f4f5;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px -12px rgba(0,0,0,.12);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0c0c0d; --surface: #161618; --ink: #f4f4f5; --ink-2: #b4b4bb; --ink-3: #6b6b74;
+    --line: #26262a; --chip: #1f1f22; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6); }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  letter-spacing: -0.01em; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 12px; height: 60px; }
+.avatar { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; flex: none;
+  background: linear-gradient(135deg, #ff7a45, #ff4d2e); color: #fff; font-weight: 800; font-size: 15px; }
+.brand { font-weight: 700; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.channel { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; flex: none; text-decoration: none;
+  font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+.channel svg { width: 16px; height: 16px; }
+
+.hero { padding: 28px 0 18px; }
+.hero h1 { margin: 0; font-size: clamp(24px, 5vw, 34px); line-height: 1.2; letter-spacing: -0.03em; font-weight: 800; }
+.hero p { margin: 8px 0 0; color: var(--ink-2); }
+.tools { display: flex; gap: 10px; align-items: center; margin-top: 18px; }
+.search { position: relative; flex: 1; }
+.search svg { position: absolute; left: 13px; top: 50%; width: 17px; height: 17px; transform: translateY(-50%); color: var(--ink-3); }
+.search input { width: 100%; height: 44px; padding: 0 14px 0 38px; font: inherit; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px; outline: none; transition: border-color .15s, box-shadow .15s; }
+.search input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent); }
+.count { color: var(--ink-3); font-size: 13px; white-space: nowrap; }
+
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; padding: 6px 0 28px; }
+@media (min-width: 640px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; } }
+@media (min-width: 920px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s; }
+@media (hover: hover) { .card:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(0,0,0,.05), 0 16px 32px -16px rgba(0,0,0,.25); } }
+.shot { position: relative; }
+.media { position: relative; display: block; aspect-ratio: 3 / 4; background: var(--chip); overflow: hidden; }
+/* The shorts thumbnail's headline sits at the top: keep it in the crop. */
+.media img { width: 100%; height: 100%; object-fit: cover; object-position: center 12%; display: block; transition: transform .4s; }
+@media (hover: hover) { .card:hover .media img { transform: scale(1.03); } }
+.badge { position: absolute; bottom: 10px; left: 10px; padding: 3px 8px; border-radius: 999px; font-size: 11px; font-weight: 800;
+  letter-spacing: .04em; background: var(--accent); color: var(--accent-ink); }
+.play { position: absolute; right: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 4px; text-decoration: none;
+  padding: 5px 9px 5px 7px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #fff;
+  background: rgba(0,0,0,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.play svg { width: 14px; height: 14px; }
+.body { display: flex; flex-direction: column; gap: 6px; padding: 12px 12px 14px; flex: 1; }
+.date { font-size: 12px; color: var(--ink-3); }
+.name { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden; min-height: 2.8em; }
+.buy { margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 6px; height: 40px; border-radius: 10px;
+  text-decoration: none; font-weight: 700; font-size: 14px; background: var(--ink); color: var(--bg); transition: background .15s; }
+.buy:hover { background: var(--accent); color: var(--accent-ink); }
+.buy svg { width: 15px; height: 15px; }
+
+.empty { grid-column: 1 / -1; text-align: center; color: var(--ink-3); padding: 60px 0; }
+footer { border-top: 1px solid var(--line); padding: 20px 0 36px; color: var(--ink-3); font-size: 12px; line-height: 1.6; }
+footer a { text-decoration: none; font-weight: 600; color: var(--ink-2); }
 </style>
 </head>
 <body>
-<header>
-  <h1>🛒 보노보노 영상 속 상품</h1>
-  <p class="sub">쇼츠에 나온 상품을 최신순으로 모았어요. 가격은 쿠팡에서 확인해 주세요.</p>
-  <p class="notice">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
-  <input id="q" type="search" placeholder="상품 이름으로 찾기" aria-label="상품 이름으로 찾기">
+<header class="top">
+  <div class="wrap">
+    <span class="avatar" aria-hidden="true">보</span>
+    <span class="brand">보노보노</span>
+    <a class="channel" href="https://www.youtube.com/@bonobono-c3y" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="#ff0033"/><path d="M10 9v6l5-3z" fill="#fff"/></svg>유튜브 채널</a>
+  </div>
 </header>
-<main id="list">
-    <article class="item" data-name="iflytek ai 스마트 음성인식 무선 마우스">
-      <a class="thumb" href="https://link.coupang.com/re/AFFSDP?lptag=AF2670631&amp;pageKey=6729650290&amp;itemId=15676080241&amp;vendorItemId=89508839638&amp;traceid=V0-153-4991c17f078dd8a7&amp;requestid=20261021113241567219158399&amp;token=31850C%7CMIXED&amp;pt=0&amp;slot=7" target="_blank" rel="sponsored nofollow noopener">
-        <img src="images/73.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
-        <span class="new">NEW</span>
-      </a>
+<main class="wrap">
+  <section class="hero">
+    <h1>영상 속 그 상품,<br>여기 다 있어요</h1>
+    <p>쇼츠에 나온 상품을 최신순으로 모았어요. 가격과 옵션은 쿠팡에서 확인해 주세요.</p>
+    <div class="tools">
+      <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="상품 이름으로 찾기" aria-label="상품 이름으로 찾기" autocomplete="off"></label>
+      <span class="count" id="count">2개</span>
+    </div>
+  </section>
+  <section class="grid" id="list">
+    <article class="card" data-name="iflytek ai 스마트 음성인식 무선 마우스">
+      <div class="shot">
+        <a class="media" href="https://link.coupang.com/re/AFFSDP?lptag=AF2670631&amp;pageKey=6729650290&amp;itemId=15676080241&amp;vendorItemId=89508839638&amp;traceid=V0-153-4991c17f078dd8a7&amp;requestid=20261021113241567219158399&amp;token=31850C%7CMIXED&amp;pt=0&amp;slot=7" target="_blank" rel="sponsored nofollow noopener" aria-label="iFLYTEK AI 스마트 음성인식 무선 마우스 쿠팡에서 보기">
+          <img src="images/73_480.jpg" alt="" loading="eager" referrerpolicy="no-referrer">
+          <span class="badge">NEW</span>
+        </a>
+        <a class="play" href="https://youtube.com/shorts/ZAzxti5AvYE" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>영상</a>
+      </div>
       <div class="body">
-        <p class="date">10월 23일 영상</p>
-        <h2>iFLYTEK AI 스마트 음성인식 무선 마우스</h2>
-        <div class="actions">
-          <a class="buy" href="https://link.coupang.com/re/AFFSDP?lptag=AF2670631&amp;pageKey=6729650290&amp;itemId=15676080241&amp;vendorItemId=89508839638&amp;traceid=V0-153-4991c17f078dd8a7&amp;requestid=20261021113241567219158399&amp;token=31850C%7CMIXED&amp;pt=0&amp;slot=7" target="_blank" rel="sponsored nofollow noopener">쿠팡에서 보기</a>
-          <a class="watch" href="https://youtube.com/shorts/ZAzxti5AvYE" target="_blank" rel="noopener">▶ 영상</a>
-        </div>
+        <span class="date">10월 23일 영상</span>
+        <h2 class="name">iFLYTEK AI 스마트 음성인식 무선 마우스</h2>
+        <a class="buy" href="https://link.coupang.com/re/AFFSDP?lptag=AF2670631&amp;pageKey=6729650290&amp;itemId=15676080241&amp;vendorItemId=89508839638&amp;traceid=V0-153-4991c17f078dd8a7&amp;requestid=20261021113241567219158399&amp;token=31850C%7CMIXED&amp;pt=0&amp;slot=7" target="_blank" rel="sponsored nofollow noopener">쿠팡에서 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
       </div>
     </article>
-    <article class="item" data-name="롤리고고 전동 킥보드 10ah, lgo-e350 lite, 블랙, 1개">
-      <a class="thumb" href="https://link.coupang.com/re/AFFSDP?lptag=AF2670631&amp;pageKey=7012463607&amp;itemId=17238142789&amp;vendorItemId=70134932809&amp;traceid=V0-153-67e1142f049ff703&amp;clickBeacon=9dc64080-ccf7-11f1-b0f1-9ccc50ff6e36%7E3&amp;requestid=20261021113210095307772528&amp;token=31850C%7CMIXED&amp;pt=1&amp;slot=1" target="_blank" rel="sponsored nofollow noopener">
-        <img src="images/69.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
-        
-      </a>
+    <article class="card" data-name="롤리고고 전동 킥보드 10ah, lgo-e350 lite, 블랙, 1개">
+      <div class="shot">
+        <a class="media" href="https://link.coupang.com/re/AFFSDP?lptag=AF2670631&amp;pageKey=7012463607&amp;itemId=17238142789&amp;vendorItemId=70134932809&amp;traceid=V0-153-67e1142f049ff703&amp;clickBeacon=9dc64080-ccf7-11f1-b0f1-9ccc50ff6e36%7E3&amp;requestid=20261021113210095307772528&amp;token=31850C%7CMIXED&amp;pt=1&amp;slot=1" target="_blank" rel="sponsored nofollow noopener" aria-label="롤리고고 전동 킥보드 10Ah, LGO-E350 LITE, 블랙, 1개 쿠팡에서 보기">
+          <img src="images/69_480.jpg" alt="" loading="eager" referrerpolicy="no-referrer">
+          
+        </a>
+        <a class="play" href="https://youtube.com/shorts/3x98idYcX4w" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>영상</a>
+      </div>
       <div class="body">
-        <p class="date">10월 22일 영상</p>
-        <h2>롤리고고 전동 킥보드 10Ah, LGO-E350 LITE, 블랙, 1개</h2>
-        <div class="actions">
-          <a class="buy" href="https://link.coupang.com/re/AFFSDP?lptag=AF2670631&amp;pageKey=7012463607&amp;itemId=17238142789&amp;vendorItemId=70134932809&amp;traceid=V0-153-67e1142f049ff703&amp;clickBeacon=9dc64080-ccf7-11f1-b0f1-9ccc50ff6e36%7E3&amp;requestid=20261021113210095307772528&amp;token=31850C%7CMIXED&amp;pt=1&amp;slot=1" target="_blank" rel="sponsored nofollow noopener">쿠팡에서 보기</a>
-          <a class="watch" href="https://youtube.com/shorts/3x98idYcX4w" target="_blank" rel="noopener">▶ 영상</a>
-        </div>
+        <span class="date">10월 22일 영상</span>
+        <h2 class="name">롤리고고 전동 킥보드 10Ah, LGO-E350 LITE, 블랙, 1개</h2>
+        <a class="buy" href="https://link.coupang.com/re/AFFSDP?lptag=AF2670631&amp;pageKey=7012463607&amp;itemId=17238142789&amp;vendorItemId=70134932809&amp;traceid=V0-153-67e1142f049ff703&amp;clickBeacon=9dc64080-ccf7-11f1-b0f1-9ccc50ff6e36%7E3&amp;requestid=20261021113210095307772528&amp;token=31850C%7CMIXED&amp;pt=1&amp;slot=1" target="_blank" rel="sponsored nofollow noopener">쿠팡에서 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
       </div>
     </article>
+    <p class="empty" id="none" hidden>찾는 상품이 없어요.</p>
+  </section>
 </main>
+<footer>
+  <div class="wrap">
+    이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.<br>
+    <a href="https://www.youtube.com/@bonobono-c3y" target="_blank" rel="noopener">보노보노 유튜브 채널 바로가기</a>
+  </div>
+</footer>
 <script>
+const cards = [...document.querySelectorAll(".card")];
 document.getElementById("q").addEventListener("input", (ev) => {
   const q = ev.target.value.trim().toLowerCase();
-  document.querySelectorAll(".item").forEach((el) => { el.hidden = q && !el.dataset.name.includes(q); });
+  let shown = 0;
+  cards.forEach((el) => { const hit = !q || el.dataset.name.includes(q); el.hidden = !hit; shown += hit; });
+  document.getElementById("count").textContent = shown + "개";
+  document.getElementById("none").hidden = shown > 0 || !cards.length;
 });
 </script>
 </body>
